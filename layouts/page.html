@@ -1,0 +1,21 @@
+{% extends "frame.html" %}
+{% block active %}{% if name == "about" %}about{% else %}pages{% endif %}{% endblock %}
+{% block main %}
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="text-center">{{ title }}</h1>
+    <br>
+    {{ content|safe }}
+    {% if with_form == "yes" %}
+    <br>
+    <a data-toggle="modal" href="/form" data-target="#form" class="btn btn-primary btn-lg pull-right">
+      点击这里参与报名
+    </a>
+    {% endif %}
+  </div>
+</div>
+{% if with_form == "yes" %}
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="formLabel" aria-hidden="true">
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,88 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">报名表</h4>
+    </div>
+    <div class="modal-body">
+      <h3 class="text-success text-center" id="sucmsg"></h3>
+      <div class="container" id="formbody">
+        <form class="form-inline" role="form">
+          <div class="form-group" id="field_name">
+            <label class="sr-only" for="name">姓名</label>
+            <input type="text" class="form-control" id="name" placeholder="姓名">
+          </div>
+          <div class="form-group" id="field_email">
+            <label class="sr-only" for="email">邮箱</label>
+            <input type="email" class="form-control" id="email" placeholder="邮箱">
+          </div>
+        </form>
+        <br>
+        <form role="form">
+          <div class="form-group">
+            <label>请用一句话评价产研部部长</label>
+            <input type="text" class="form-control" id="comment">
+          </div>
+          <div class="form-group">
+            <label>请用任意编程语言写一段自我介绍</label>
+            <textarea class="form-control" rows="7" id="introduction"></textarea>
+          </div>
+          <div class="form-group">
+            <label>请输入你的节操值</label>
+            <input type="number" class="form-control" id="jiecao">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="meizhi">愿意给部长介绍师妹
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="container pull-left">
+        <p class="text-warning" id="errmsg"></p>
+      </div>
+      <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">取消</button>
+      <button type="button" class="btn btn-primary" id="submit" onclick="postForm();">提交报名</button>
+    </div>
+  </div>
+</div>
+
+<script>
+    function postForm() {
+        $("#submit")[0].disabled = true;
+        var content = new Array();
+        for (var i = 0; i < $(".content").length; i++)
+            if ($(".content")[i].type == "checkbox")
+                content.push($(".content")[i].checked);
+            else
+                content.push($(".content")[i].value);
+
+        $.post("/form", {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            comment: $("#comment").val(),
+            introduction: $("#introduction").val(),
+            jiecao: $("#jiecao").val(),
+            meizhi: $("#meizhi")[0].checked
+            }, function(response) {
+                if (response.err_code == 0) {
+                    $("#formbody").hide();
+                    $("#errmsg").hide();
+                    $("#sucmsg").text(response.msg);
+                    $("#cancel").text("关闭");
+                }
+                else {
+                    $("#errmsg").text(response.msg);
+                    if (response.err_field) {
+                        $("#" + response.err_field).parent().addClass("has-error");
+                        $("#" + response.err_field)[0].onchange = function() {
+                            $("#" + response.err_field).parent().removeClass("has-error");
+                        };
+                    }
+                    $("#submit")[0].disabled = false;
+                }
+            }, "json");
+    }
+</script>

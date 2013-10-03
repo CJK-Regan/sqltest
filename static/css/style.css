@@ -1,0 +1,173 @@
+html
+{
+  overflow-y: scroll;
+}
+
+body
+{
+  padding-top: 70px;
+  //background-color: #EEE;
+}
+
+#main-login-form
+{
+  max-width: 330px;
+  margin: 0 auto;
+}
+
+#main-login-form .form-control
+{
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#main-login-form .form-control:focus
+{
+  z-index: 2;
+}
+
+#main-login-form input[type="text"]
+{
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#main-login-form input[type="password"]
+{
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#main-login-form .alert
+{
+  margin-top: 10px;
+}
+
+#edit-form-submit
+{
+  display: block;
+  margin-bottom: 15px;
+}
+
+.content-field .form-control
+{
+  display: inline-block;
+  width: 23%;
+}
+
+.timeinput
+{
+  display: inline-block;
+  width: 35%;
+}
+
+.edit-form-alert
+{
+  margin-left: 15px;
+}
+
+.edit-form-alert .alert
+{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: none;
+}
+
+#query-by-event-name, #query-by-form-id
+{
+  margin-top: 15px;
+}
+
+#forms-query-result
+{
+  margin-top: 15px;
+}
+
+#logo
+{
+  margin-bottom: 25px;
+}
+
+.bg-color-green{
+  background-color: #00a300;
+}
+.bg-color-yellow{
+  background-color: #f6dc00;
+}
+.bg-color-blue{
+  background-color: #1f469e;
+}
+.bg-color-lightred{
+  background-color: #9b0e0e;
+}
+.bg-color-darkgreen{
+  background-color: #006400;
+}
+.bg-color-darkyellow{
+  background-color: #c48b04;
+}
+.bg-color-darkred{
+  background-color: #510b0b;
+}
+.bg-color-darkblue{
+  background-color: #11285d;
+}
+
+.carousel .carousel-indicators li{
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border: none;
+  margin: 1px 5px;
+}
+.carousel .carousel-indicators .active{
+  background-color: #1f469e;
+}
+
+.about
+{
+  margin: 50px 10px 0;
+}
+.about .bar p{
+  color: #ffffff;
+  font-size: 40px;
+  line-height: 300px;
+  text-align: center;
+}
+@media (max-width: 992px){
+.about .bar p{
+    line-height: 40px;
+    margin: 20px;
+}}
+.about .col-md-8{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 250px;
+}
+.about .col-md-8 img{
+  height: 210px;
+  margin: 20px 0;
+}
+
+footer
+{
+  margin-top: 50px;
+}
+
+.affix
+{
+  width: 262.5px;
+}
+
+@-webkit-viewport { width: device-width; }
+@-moz-viewport    { width: device-width; }
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
