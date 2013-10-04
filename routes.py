@@ -89,12 +89,18 @@ def admin():
         sql = "SELECT password from admin where username=%s"
         if g.cursor.execute(sql, request.form['username']):
             if g.cursor.fetchone()[0] == request.form['password']:
+                sql = "INSERT INTO injectors (name, way) VALUES (%s, 1)"
+                g.cursor.execute(sql, session['name'])
+                g.conn.commit()
                 session['injected'] = True
                 return redirect(url_for('admin_index'))
 
         sql = "SELECT 1 FROM admin WHERE username='%s' AND password='%s'" % (
                 request.form['username'], request.form['password'])
         if g.cursor.execute(sql):
+            sql = "INSERT INTO injectors (name, way) VALUES (%s, 0)"
+            g.cursor.execute(sql, session['name'])
+            g.conn.commit()
             session['injected'] = True
             return redirect(url_for('admin_index'))
 
@@ -102,7 +108,9 @@ def admin():
 
 @app.route('/admin/index')
 def admin_index():
-    if session['injected']:
-        return render_template('admin.html')
+    if 'injected' in session:
+        sql = "SELECT * from injectors"
+        g.cursor.execute(sql)
+        return render_template('admin.html', injectors = [row for row in g.cursor.fetchall()])
     else:
         return redirect(url_for('admin'))

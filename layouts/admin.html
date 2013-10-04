@@ -14,21 +14,32 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-content">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="/">首页</a>
         </div>
       </div>
     </div>
 
     <div class="container">
-
+      <h1>Logs</h1>
+      <p>恭喜你成功进入后台，以下是渗透记录</p>
+      <p>PS：渗透方式中，0为后台绕过，1为帐号密码登录（建议大家两种都尝试一下）</p>
+      <a href="/admin" class="btn btn-primary">返回后台登录界面</a>
+	  <br><br>
+      <table class="table">
+        <th>
+          <td>姓名</td>
+          <td>渗透方式</td>
+          <td>时间</td>
+        </th>
+        {% for injector in injectors %}
+        <tr>
+          <td>{{ injector[0] }}</td>
+          <td>{{ injector[1] }}</td>
+          <td>{{ injector[2] }}</td>
+          <td>{{ injector[3] }}</td>
+        </tr>
+        {% endfor %}
+      </table>
     </div>
-
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
   </body>
 </html>
